@@ -1,0 +1,48 @@
+import streamlit as st
+import requests
+
+st.set_page_config(page_title="Coursework Summarizer", page_icon="📚", layout="centered")
+
+st.title("📚 Coursework Summarizer")
+st.write("""
+Welcome! Upload your coursework PDF or enter its path below.  
+Get concise summaries and key facts to help you study smarter.
+""")
+
+pdf_path = st.text_input("Enter the path to your coursework PDF:")
+uploaded_file = st.file_uploader("Or upload a PDF file", type=["pdf"])
+chunk_size = st.number_input("Chunk Size", min_value=500, max_value=5000, value=2000, step=100)
+num_clusters = st.number_input("Number of Clusters", min_value=5, max_value=50, value=20, step=1)
+
+if st.button("Summarize Coursework"):
+    api_url = "http://localhost:8000/summarize"
+    files = None
+    data = {
+        "chunk_size": chunk_size,
+        "num_clusters": num_clusters
+    }
+    if uploaded_file:
+        files = {"file": (uploaded_file.name, uploaded_file, "application/pdf")}
+    elif pdf_path:
+        data["pdf_path"] = pdf_path
+    else:
+        st.warning("Please provide a PDF path or upload a PDF file.")
+        st.stop()
+
+    try:
+        if files:
+            response = requests.post(api_url, data=data, files=files)
+        else:
+            response = requests.post(api_url, data=data)
+        if response.status_code == 200:
+            summary = response.json().get("summary", "")
+            st.header("Summary")
+            for bullet in summary.split(". "):
+                st.markdown(f"- {bullet.strip()}")
+        else:
+            st.error(f"Backend error: {response.text}")
+    except Exception as e:
+        st.error(f"Could not connect to backend: {e}")
+
+st.markdown("---")
+st.info("This tool helps students quickly understand coursework PDFs by summarizing key points, deadlines, and important facts. Powered by AI.")
