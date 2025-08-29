@@ -93,20 +93,4 @@ pip install langchain langchain-community langchain-ollama langchain-huggingface
 
 ---
 
-## Contributing
 
-- Fork the repository.
-- Create a feature branch.
-- Submit a pull request with clear documentation and test cases.
-
----
-
-## License
-
-MIT License. See LICENSE file for details.
-
----
-
-## Support
-
-For issues or feature requests, open an issue on GitHub or contact the maintainer.
