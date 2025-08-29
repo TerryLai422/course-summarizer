@@ -1,4 +1,4 @@
-# Coursework Summarizer Documentation
+# Coursework Summarizer 
 
 ## Overview
 
@@ -10,11 +10,11 @@ Coursework Summarizer is an AI-powered tool that helps students quickly digest a
 
 ### Purpose
 
-- Accepts a PDF file path.
-- Extracts and chunks the text.
-- Clusters document chunks using embeddings.
-- Summarizes the clustered content using an LLM (Ollama).
-- Appends each summary to a combined PDF file.
+- Accept a PDF file path.
+- Extract and chunks the text.
+- Cluster document chunks using embeddings.
+- Summarize the clustered content using an LLM (Ollama).
+- Append each summary to a combined PDF file.
 
 ### Main Components
 
@@ -41,15 +41,6 @@ python original.py
 
 ---
 
-## Frontend (`frontend`)
-
-### Purpose
-
-- Provides a student-friendly web interface using Streamlit.
-- Allows users to upload a PDF or enter a file path.
-- Lets users adjust chunk size and number of clusters for summary detail.
-- Connects to the backend API for summarization.
-- Displays the summary in bullet points.
 
 ### Main Components
 
@@ -60,12 +51,9 @@ python original.py
 
 ### Usage
 
-Start the frontend:
-```
-streamlit run frontend
-```
+
 - Enter a PDF path or upload a PDF.
-- Adjust chunk size and cluster count as needed.
+
 - Click "Summarize Coursework" to get results.
 
 ### API Requirements
