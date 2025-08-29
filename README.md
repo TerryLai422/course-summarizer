@@ -1,0 +1,2 @@
+# course-summarizer
+Course Summarizer
